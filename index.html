@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sam Drummond — Strength, Conditioning & Rehab Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #1D9E75;
+    --teal-dark: #0F6E56;
+    --teal-light: #E1F5EE;
+    --ink: #141410;
+    --ink-mid: #4a4a44;
+    --ink-light: #8a8a82;
+    --cream: #F7F5F0;
+    --cream-dark: #EDEAE2;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink-mid);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  .nav-cta {
+    background: var(--ink) !important;
+    color: var(--cream) !important;
+    padding: 9px 20px;
+    border-radius: 100px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--teal-dark) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 48px 80px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(29,158,117,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.1s;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px; height: 1.5px;
+    background: var(--teal);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    color: var(--ink);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.2s;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink-mid);
+    max-width: 480px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.3s;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.4s;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--ink-mid);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--teal); }
+
+  .btn-ghost::after { content: '↓'; }
+
+  /* Hero visual */
+  .hero-visual {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 0.5s;
+  }
+
+  .hero-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 40px;
+    border: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+  }
+
+  .hero-card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(29,158,117,0.15), transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .stat-box {
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--ink-light);
+  }
+
+  .stat-box.accent {
+    background: var(--teal);
+  }
+
+  .stat-box.accent .stat-num,
+  .stat-box.accent .stat-label {
+    color: white;
+  }
+
+  .hero-quote {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--ink-mid);
+    font-style: italic;
+    border-left: 2px solid var(--teal);
+    padding-left: 16px;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 48px; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 20px; height: 1.5px;
+    background: var(--teal);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 3.5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--ink);
+    color: white;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .about .section-label { color: var(--teal); }
+  .about .section-label::before { background: var(--teal); }
+  .about .section-title { color: white; }
+
+  .about-body {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 32px;
+  }
+
+  .creds {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cred {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .cred-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+  }
+
+  .about-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .about-stat {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 28px 24px;
+  }
+
+  .about-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .about-stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+  }
+
+  .about-stat.full { grid-column: 1 / -1; }
+
+  /* ── ABOUT PHOTO ── */
+  .about-photo-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-photo-wrap img {
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    filter: grayscale(15%);
+  }
+
+  .about-photo-placeholder {
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 3/4;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 2px dashed rgba(255,255,255,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
+    text-align: center;
+    padding: 32px;
+  }
+
+  .about-photo-placeholder svg {
+    opacity: 0.3;
+  }
+
+  .about-photo-badge {
+    position: absolute;
+    bottom: -16px;
+    right: calc(50% - 170px + 16px);
+    background: var(--teal);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    background: var(--cream-dark);
+  }
+
+  .testimonials-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .testimonials-header {
+    margin-bottom: 52px;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .testimonial-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 32px;
+    border: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.07);
+  }
+
+  .testimonial-card.featured {
+    background: var(--ink);
+    border-color: transparent;
+  }
+
+  .testimonial-stars {
+    display: flex;
+    gap: 3px;
+    color: var(--teal);
+    font-size: 14px;
+  }
+
+  .testimonial-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--ink);
+    flex-grow: 1;
+  }
+
+  .testimonial-card.featured .testimonial-quote {
+    color: white;
+  }
+
+  .testimonial-quote::before {
+    content: '\201C';
+    font-size: 48px;
+    line-height: 0.5;
+    vertical-align: -0.4em;
+    color: var(--teal);
+    margin-right: 4px;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .testimonial-card.featured .testimonial-author {
+    border-top-color: rgba(255,255,255,0.08);
+  }
+
+  .testimonial-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    flex-shrink: 0;
+  }
+
+  .testimonial-card.featured .testimonial-avatar {
+    background: rgba(255,255,255,0.1);
+    color: var(--teal);
+  }
+
+  .testimonial-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .testimonial-card.featured .testimonial-name {
+    color: white;
+  }
+
+  .testimonial-detail {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 2px;
+  }
+
+  .testimonial-card.featured .testimonial-detail {
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ── COACHING ── */
+  .coaching-header {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .coaching-cards {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .coaching-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .coaching-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+
+  .coaching-card.featured::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--teal);
+  }
+
+  .card-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    background: var(--teal-light);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .card-price {
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .card-price sup {
+    font-size: 18px;
+    font-weight: 500;
+    vertical-align: super;
+  }
+
+  .card-price-period {
+    font-size: 13px;
+    color: var(--ink-light);
+    margin-bottom: 20px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .card-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .card-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--ink-mid);
+    font-weight: 300;
+  }
+
+  .card-features li::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .card-btn {
+    display: block;
+    text-align: center;
+    padding: 13px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+  }
+
+  .card-btn:hover {
+    background: var(--ink);
+    color: white;
+  }
+
+  .coaching-card.featured .card-btn {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: white;
+  }
+
+  .coaching-card.featured .card-btn:hover {
+    background: var(--teal-dark);
+    border-color: var(--teal-dark);
+  }
+
+  /* ── PROGRAMS ── */
+  .programs { background: var(--cream-dark); }
+
+  .programs-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .programs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .program-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 32px;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+  }
+
+  .program-card:hover { transform: translateY(-3px); }
+
+  .program-card.bundle {
+    background: var(--teal);
+    color: white;
+    grid-column: 3;
+  }
+
+  .program-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .program-card.bundle .program-icon {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .program-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .program-card.bundle .program-name { color: white; }
+
+  .program-duration {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 12px;
+  }
+
+  .program-card.bundle .program-duration { color: rgba(255,255,255,0.7); }
+
+  .program-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .program-card.bundle .program-desc { color: rgba(255,255,255,0.8); }
+
+  .program-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .program-price {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .program-card.bundle .program-price { color: white; }
+
+  .program-price-label {
+    font-size: 11px;
+    color: var(--ink-light);
+  }
+
+  .program-card.bundle .program-price-label { color: rgba(255,255,255,0.7); }
+
+  .program-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--teal);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .program-card.bundle .program-link { color: white; }
+
+  .was-price {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: line-through;
+    margin-right: 4px;
+  }
+
+  /* ── PROCESS ── */
+  .process-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .process-header { margin-bottom: 60px; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: calc(12.5% + 20px);
+    right: calc(12.5% + 20px);
+    height: 1px;
+    background: var(--cream-dark);
+  }
+
+  .step {
+    padding: 0 16px;
+    position: relative;
+  }
+
+  .step-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .step:hover .step-num {
+    background: var(--teal);
+    color: white;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--ink); }
+
+  .contact-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact .section-label {
+    justify-content: center;
+    color: var(--teal);
+  }
+
+  .contact .section-label::before { background: var(--teal); }
+
+  .contact .section-title { color: white; margin-bottom: 16px; }
+
+  .contact-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+    margin-bottom: 48px;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-group label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: white;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-group select option { background: var(--ink); color: white; }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--teal);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    background: var(--teal);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 100px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 100px 20px 60px;
+    }
+
+    .hero-visual { display: none; }
+
+    section { padding: 70px 20px; }
+
+    .about-grid,
+    .coaching-cards { grid-template-columns: 1fr; gap: 24px; }
+
+    .programs-grid { grid-template-columns: 1fr; }
+    .program-card.bundle { grid-column: 1; }
+
+    .steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .steps::before { display: none; }
+
+    .form-row { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+
+    .coaching-header,
+    .programs-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+
+    .testimonials-grid { grid-template-columns: 1fr; }
+
+    .about-photo-badge {
+      right: 16px;
+      bottom: -12px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Sam Drummond</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#coaching">Coaching</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact" class="nav-cta">Get started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Online coaching — Australia & worldwide</div>
+    <h1>Strength.<br><em>Rehab.</em><br>Performance.</h1>
+    <p class="hero-sub">Expert online coaching from an accredited strength & conditioning and rehab specialist. Programming built around you — wherever you are.</p>
+    <div class="hero-actions">
+      <a href="#coaching" class="btn-primary">View services</a>
+      <a href="#about" class="btn-ghost">Learn more</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="stat-grid">
+        <div class="stat-box">
+          <div class="stat-num">1:1</div>
+          <div class="stat-label">Personalised coaching</div>
+        </div>
+        <div class="stat-box accent">
+          <div class="stat-num">S&C</div>
+          <div class="stat-label">+ Rehab expertise</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Remote, flexible</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">AUS</div>
+          <div class="stat-label">Based, available worldwide</div>
+        </div>
+      </div>
+      <p class="hero-quote">Combining strength, conditioning and rehab knowledge to help you perform at your best — and stay there.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label">About Sam</div>
+      <h2 class="section-title">Coaching that bridges the gap between rehab and performance</h2>
+      <p class="about-body">With 8+ years of experience working with elite athletes and rehab clients, I bring clinical and athletic programming expertise to online coaching. Every program is built from scratch — no time wasted, no guesswork.</p>
+      <div class="creds">
+        <div class="cred"><div class="cred-dot"></div>Accredited Strength & Conditioning Coach</div>
+        <div class="cred"><div class="cred-dot"></div>Rehab Specialist</div>
+        <div class="cred"><div class="cred-dot"></div>Experience with elite athletes & weekend warriors</div>
+        <div class="cred"><div class="cred-dot"></div>Programming delivered via Everfit</div>
+      </div>
+    </div>
+    <div class="about-photo-wrap">
+      <!--
+        TO ADD YOUR PHOTO:
+        Replace the placeholder div below with:
+        <img src="your-photo.jpg" alt="Sam Drummond — Strength & Conditioning Coach">
+      -->
+      <div class="about-photo-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <span>Add your photo here<br><small>Replace this block with an &lt;img&gt; tag</small></span>
+      </div>
+      <div class="about-photo-badge">Sam Drummond · Coach</div>
+    </div>
+    <div class="about-right">
+      <div class="about-stat">
+        <div class="about-stat-num">In-person</div>
+        <div class="about-stat-label">Background with real rehab & athlete clients</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">Online</div>
+        <div class="about-stat-label">Now available remotely, worldwide</div>
+      </div>
+      <div class="about-stat full">
+        <div class="about-stat-num">Both worlds</div>
+        <div class="about-stat-label">S&C + rehab knowledge that most online coaches simply don't have</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COACHING -->
+<section id="coaching">
+  <div class="coaching-header">
+    <div>
+      <div class="section-label">1-on-1 coaching</div>
+      <h2 class="section-title">Fully personalised,<br>built around your goals</h2>
+    </div>
+    <p class="section-sub">Monthly coaching with real accountability. Minimum 2-month commitment. All prices in AUD.</p>
+  </div>
+  <div class="coaching-cards">
+    <div class="coaching-card">
+      <div class="card-tag">Standard</div>
+      <div class="card-name">Performance Coaching</div>
+      <div class="card-price"><sup>$</sup>150</div>
+      <div class="card-price-period">per month</div>
+      <p class="card-desc">Customised programming with ongoing feedback — ideal for athletes and general performance goals.</p>
+      <ul class="card-features">
+        <li>Fully personalised program via Everfit</li>
+        <li>Fortnightly check-in and video analysis</li>
+        <li>Direct messaging support</li>
+        <li>Monthly program review & update</li>
+      </ul>
+      <a href="#contact" class="card-btn">Enquire now</a>
+    </div>
+    <div class="coaching-card featured">
+      <div class="card-tag">Rehab & Performance</div>
+      <div class="card-name">Rehab Coaching</div>
+      <div class="card-price"><sup>$</sup>250</div>
+      <div class="card-price-period">per month</div>
+      <p class="card-desc">Integrated rehab and strength programming — for injury recovery, return to sport, or performance with a history of injury.</p>
+      <ul class="card-features">
+        <li>Rehab-focused personalised program</li>
+        <li>Weekly 30-min video check-in</li>
+        <li>Movement assessment</li>
+        <li>Liaison with treating physio/allied health on request</li>
+      </ul>
+      <a href="#contact" class="card-btn">Enquire now</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="programs-inner">
+    <div class="programs-header">
+      <div>
+        <div class="section-label">Pre-built programs</div>
+        <h2 class="section-title">Start today, no waitlist</h2>
+      </div>
+      <p class="section-sub">One-time purchase. Download and go — structured programs you can follow on your own.</p>
+    </div>
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-icon">🏋️</div>
+        <div class="program-name">OFF-SZN</div>
+        <div class="program-duration">6-week program</div>
+        <p class="program-desc">A structured conditioning block designed for field sport athletes to build your athletic base during the off-season. Delivered via PDF.</p>
+        <div class="program-footer">
+          <div>
+            <div class="program-price">$69</div>
+            <div class="program-price-label">one-time</div>
+          </div>
+          <a href="https://samdrumx.gumroad.com/l/saguef" target="_blank" class="program-link">Buy now →</a>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">🔄</div>
+        <div class="program-name">Resilient By Design</div>
+        <div class="program-duration">6-week program</div>
+        <p class="program-desc">A progressive mobility program for all levels to restore movement quality, address restrictions, and reduce injury risk. Delivered via PDF.</p>
+        <div class="program-footer">
+          <div>
+            <div class="program-price">$39</div>
+            <div class="program-price-label">one-time</div>
+          </div>
+          <a href="https://samdrumx.gumroad.com/l/fjdxl" target="_blank" class="program-link">Buy now →</a>
+        </div>
+      </div>
+      <div class="program-card bundle">
+        <div class="program-icon">⚡</div>
+        <div class="program-name">Bundle — Both Programs</div>
+        <div class="program-duration">12 weeks total</div>
+        <p class="program-desc">Get both conditioning and mobility programs together at a reduced price.</p>
+        <div class="program-footer">
+          <div>
+            <div class="program-price"><span class="was-price">$108</span>$89</div>
+            <div class="program-price-label">save $19</div>
+          </div>
+          <a href="https://samdrumx.gumroad.com/l/frmpj" target="_blank" class="program-link">Buy now →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="process-inner">
+    <div class="process-header">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">Simple to get started</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Enquire</div>
+        <p class="step-desc">Fill in the contact form below and tell me a bit about your goals and training history.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Intro call</div>
+        <p class="step-desc">We'll have a quick call to make sure we're the right fit and talk through what you need.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Assessment</div>
+        <p class="step-desc">I build a profile of your movement, history, goals and schedule before writing a single exercise.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Start training</div>
+        <p class="step-desc">Your program goes live. We check in regularly and adjust as you progress.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <div class="section-label">What clients say</div>
+      <h2 class="section-title">Results that speak<br>for themselves</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card featured">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Add your first testimonial here. Replace this placeholder with a real quote from a client. Something specific about their results works best.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div>
+            <div class="testimonial-name">Client Name</div>
+            <div class="testimonial-detail">Goal or sport — e.g. Return to sport post-ACL</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Add your second testimonial here. A short, punchy quote about the coaching experience or specific outcome works well in this slot.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">B</div>
+          <div>
+            <div class="testimonial-name">Client Name</div>
+            <div class="testimonial-detail">Goal or sport</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Add your third testimonial here. Variety is good — mix athletes, rehab clients, and general fitness to show your range.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">C</div>
+          <div>
+            <div class="testimonial-name">Client Name</div>
+            <div class="testimonial-detail">Goal or sport</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-label">Get in touch</div>
+    <h2 class="section-title">Ready to get started?</h2>
+    <p class="contact-sub">Fill in the form and I'll be in touch within 48 hours to have a chat about what you're looking for.</p>
+    <form class="contact-form" id="enquiry-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First name</label>
+          <input type="text" name="first_name" placeholder="Alex" required>
+        </div>
+        <div class="form-group">
+          <label>Last name</label>
+          <input type="text" name="last_name" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="alex@email.com" required>
+      </div>
+      <div class="form-group">
+        <label>I'm interested in</label>
+        <select name="service">
+          <option value="">Select a service...</option>
+          <option>Standard coaching ($150/mo)</option>
+          <option>Rehab & Performance coaching ($250/mo)</option>
+          <option>OFF-SZN program ($69)</option>
+          <option>Resilient By Design program ($39)</option>
+          <option>Bundle — both programs ($89)</option>
+          <option>Not sure yet — just enquiring</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell me about your goals</label>
+        <textarea name="message" placeholder="E.g. returning from injury, want to improve performance, off-season training..."></textarea>
+      </div>
+      <button type="submit" class="form-submit" id="submit-btn">Send enquiry →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Sam Drummond</div>
+  <div class="footer-note">All prices AUD. © 2025 Sam Drummond. Online coaching available worldwide.</div>
+</footer>
+
+<script>
+document.getElementById('enquiry-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const data = new FormData(this);
+
+  try {
+    const res = await fetch('https://formspree.io/f/xbdqdvby', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      btn.textContent = 'Enquiry sent — I\'ll be in touch shortly!';
+      btn.style.background = '#0F6E56';
+      this.reset();
+    } else {
+      btn.textContent = 'Something went wrong — please try again.';
+      btn.style.background = '#c0392b';
+      btn.disabled = false;
+    }
+  } catch (err) {
+    btn.textContent = 'Something went wrong — please try again.';
+    btn.style.background = '#c0392b';
+    btn.disabled = false;
+  }
+});
+</script>
+
+</body>
+</html>
